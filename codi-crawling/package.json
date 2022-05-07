@@ -1,0 +1,27 @@
+{
+  "name": "codi-crawling",
+  "version": "1.0.0",
+  "description": "Coordination Project refactoring",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeonSangWon/Coordination.git"
+  },
+  "author": "SeonSangWon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SeonSangWon/Coordination/issues"
+  },
+  "homepage": "https://github.com/SeonSangWon/Coordination#readme",
+  "dependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.0"
+  }
+}

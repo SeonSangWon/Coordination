@@ -1,0 +1,19 @@
+# SERVER PATH
+.env
+
+# LOG
+serverLog/
+
+# DOCKER
+Dockerfile
+
+# MODULE
+node_modules/
+
+# DATABAE
+codi-mysql/
+codi-mongo/
+*.sql
+
+# Mac OS Finder
+.DS_Store
