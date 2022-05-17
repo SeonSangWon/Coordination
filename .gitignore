@@ -15,5 +15,8 @@ codi-mysql/
 codi-mongo/
 *.sql
 
+# XLSX
+*.xlsx
+
 # Mac OS Finder
 .DS_Store
