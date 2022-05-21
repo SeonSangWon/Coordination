@@ -2,9 +2,6 @@
 
 import mongoose from 'mongoose';
 import region from '../schema/region';
-require('dotenv').config();
-
-const SERVER_TYPE = process.env['SERVER_TYPE'];
 
 export default (collectionName, schemaType) => {
     let schema = {}

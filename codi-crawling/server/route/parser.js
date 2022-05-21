@@ -2,11 +2,12 @@
 
 import { app } from '../index';
 import { logger } from '../../logger';
-import { getWeatherGPSCode } from '../service/parser';
+import { getWeatherCode } from '../service/parser';
 
 const handler = async (req, res, next) => {
     try {
-      return  await getWeatherGPSCode();
+      logger.info(`Path : /parser, Load...`);
+      res.json(await getWeatherCode());
     } catch (err) {
       logger.error(`handler`, err);
       next(err);
