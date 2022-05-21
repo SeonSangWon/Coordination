@@ -2,22 +2,21 @@
 
 import { app } from '../index';
 import { logger } from '../../logger';
-import weather from '../service/weather';
+import { getCraling } from '../service/weather';
 
 const handler = async (req, res, next) => {
   try {
-    // pageNo, numOfRows, dataType, baseDate, baseTime, nx, ny
-    let params = {
-      pageNo: '1',
-      numOfRows: '10',
-      dataType: 'JSON',
-      baseDate: '20220516',
-      baseTime: '0600',
-      nx: '55',
-      ny: '127'
-    };
-    const message = await weather(params);
-    res.json(message);
+    // T1H: 날씨 - 기온
+    // SKY: 하늘 상태 : 맑음(1), 구름많음(3), 흐림(4)
+    let params = req.query;
+    const message = await getCraling(params);
+    const result = JSON.parse(message).response.body.items.item;
+    const data = result.filter(info => {
+      if (info.category === 'T1H' || info.category === 'SKY')
+        return true;
+    });
+
+    res.send(data);
   } catch (err) {
     console.error(err);
     next(err);

@@ -7,11 +7,13 @@ import { logger } from '../logger';
 import mysql from '../database/mysql';
 import mongo from '../database/mongo';
 import route from './route';
+import { weatherParser } from '../service';
 require('dotenv').config();
 
 mongo();
 mysql();
 route();
+weatherParser();
 const server = require('http').createServer(app);
 const HTTP_PORT = process.env.HTTP_PORT;
 
