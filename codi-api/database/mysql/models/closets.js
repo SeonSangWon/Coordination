@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function (sequelize, DataTypes) {
-    const Careers = sequelize.define('closets', {
+    const closets = sequelize.define('closets', {
         closetId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -32,13 +32,13 @@ module.exports = function (sequelize, DataTypes) {
         freezeTableName: true,
         timestamps: false,
       });
-      Careers.associate = function(models) { 
-        Careers.belongsTo(models.users, {
+      closets.associate = function(models) { 
+        closets.belongsTo(models.users, {
             foreignKey: 'userId',
             onUpdate: 'cascade',
             onDelete: 'cascade'
         });
       };
 
-      return Careers;
+      return closets;
     };

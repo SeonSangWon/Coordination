@@ -1,8 +1,8 @@
 'use strict'
 
 module.exports = function (sequelize, DataTypes) {
-    const Users = sequelize.define('users', {
-        user_id: {
+    const users = sequelize.define('users', {
+        userId: {
             type: DataTypes.STRING(32),
             primaryKey: true
         },
@@ -36,5 +36,5 @@ module.exports = function (sequelize, DataTypes) {
         timestamps: false,
       });
 
-      return Users;
+      return users;
     };

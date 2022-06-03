@@ -1,36 +1,29 @@
 'use strict'
 
 module.exports = function (sequelize, DataTypes) {
-    const dressrooms = sequelize.define('dressrooms', {
-        dressId: {
+    const shops = sequelize.define('shops', {
+        shopId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        userId: {
+        name: {
             type: DataTypes.STRING(32),
-            allowNull: false
+            allowNull: true
         },
-        image: {
-            type: DataTypes.STRING(32),
+        link: {
+            type: DataTypes.STRING(128),
             allowNull: true
         },
         createAt: {
             type: DataTypes.DATE,
             allowNull: true
-        },
+        }
     }, {
         underscored: false,
         freezeTableName: true,
         timestamps: false,
       });
-      dressrooms.associate = function(models) { 
-        dressrooms.belongsTo(models.users, {
-            foreignKey: 'userId',
-            onUpdate: 'cascade',
-            onDelete: 'cascade'
-        });
-      };
 
-      return dressrooms;
+      return shops;
     };
