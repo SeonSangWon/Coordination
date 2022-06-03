@@ -9,7 +9,7 @@ const axiso = require('axios');
 const SERVER_TYPE = process.env['SERVER_TYPE'];
 const CRAWLING_URL = process.env[`${SERVER_TYPE}_CRAWLING_URL`];
 const apiTime = ['0210', '0510', '0810', '1110', '1410', '1710', '2010', '2310'];
-const scheduleSetting = SERVER_TYPE == 'REAL' ? '0 10 * * * *' : '0 10 * * * *';
+const scheduleSetting = '0 10 * * * *';
 
 export const weatherParser = async () => {
     // second, minute, hour, day, month, week (0 ~ 7 is Sun)
@@ -29,8 +29,17 @@ export const weatherParser = async () => {
         if (isAPITime) {
             const collectionName = 'weather';
             const model = modelSearch(collectionName, 'weather');
-            const result = await axiso.get(`http://${CRAWLING_URL}/weather?pageNo=${pageNo}&numOfRows=${numOfRows}&dataType=${dataType}&baseDate=${baseDate}&baseTime=${baseTime}&nx=${nx}&ny=${ny}`);
-            
+            const result = await axiso.get(`http://${CRAWLING_URL}/weather`, {
+                params: {
+                    pageNo: pageNo,
+                    numOfRows: numOfRows,
+                    dataType: dataType,
+                    baseDate: baseDate,
+                    baseTime: baseTime,
+                    nx: nx,
+                    ny: ny
+                }
+            });
             result.data.forEach(async (info) => {
                 await new model({
                     baseDate: info.baseDate,
