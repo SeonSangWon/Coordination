@@ -1,9 +1,9 @@
 'use strict'
 
-import set_shop from './set_shop';
+import set_shopInfo from './set_shopInfo';
 
 export default () => {
     [
-        set_shop
+        set_shopInfo
     ].map(handler => handler());
 };

@@ -2,10 +2,12 @@
 
 import crawling from './crawling';
 import shop from './shop';
+import shopInfo from './shopInfo';
 
 export default () => {
     [
         crawling,
-        shop
+        shop,
+        shopInfo
     ].map(handler => handler());
 };
