@@ -16,9 +16,10 @@ const handler = async (req, res, next) => {
         return true;
     });
 
+    logger.info(`[GET] /weather, status: 200`);
     res.send(data);
   } catch (err) {
-    console.error(err);
+    logger.error(`[GET] /weather, handler`, err);
     next(err);
   }
 };
@@ -27,7 +28,7 @@ export default () => {
   try {
     app.get('/weather', handler);
   } catch(err) {
-      logger.error(`[route/weather.js] handler`, err);
+    logger.error(`[GET] /weather`, err);
       return undefined;
   }
 };

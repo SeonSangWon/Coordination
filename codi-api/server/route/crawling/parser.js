@@ -27,7 +27,7 @@ const setRegion = async (info) => {
             latSecond: info.latSecond ?? null
         }).save();
     } catch (err) {
-        logger.error(`setRegion`, err);
+        logger.error(`[GET] /crawling/parser, setRegion`, err);
         next(err);
     }
 };
@@ -38,9 +38,11 @@ const handler = async (req, res, next) => {
         result.data.forEach(async (info) => {
             await setRegion(info);
         });
-        res.send(true);
+
+        logger.info(`[GET] /crawling/parser, status: 200`);
+        res.json({ 'status': 200 });
       } catch (err) {
-        logger.error(`handler`, err);
+        logger.error(`[GET] /crawling/parser, handler`, err);
         next(err);
       }
 };
@@ -49,7 +51,7 @@ export default () => {
     try {
       app.get('/crawling/parser', handler);
     } catch(err) {
-        logger.error(`[route/crawling/parser.js] handler`, err);
+        logger.error(`[[GET] /crawling/parser`, err);
         return undefined;
     }
   };
