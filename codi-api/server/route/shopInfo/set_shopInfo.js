@@ -12,7 +12,7 @@ const handler = async (req, res, next) => {
     try {
         const { shopId, category, link } = req.body;
 
-        if ( !shopId || !category || !link ) {
+        if (!shopId || !category || !link) {
           logger.error(`[POST] /shop-info, status: 400, msg: Not Params`);
           res.json({ 'status': 400, 'msg': 'Not Params' });
           return;

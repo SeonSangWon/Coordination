@@ -5,6 +5,7 @@ import moment from 'moment-timezone';
 import modelSearch from '../database/mongo/model/documents';
 const schedule = require('node-schedule');
 const axiso = require('axios');
+const download = require('image-downloader');
 
 const SERVER_TYPE = process.env['SERVER_TYPE'];
 const CRAWLING_URL = process.env[`${SERVER_TYPE}_CRAWLING_URL`];
@@ -60,3 +61,17 @@ export const weatherParser = async () => {
         logger.error(`node-schedule, status: 400`, err);
     }
 };
+
+export const getImageDownloader = async (url, dir) => {
+    try {
+        const options = {
+            url: url,
+            dest: dir
+        };
+        download.image(options);
+        return true;
+    } catch (err) {
+        logger.error(`getImageDownloader`, err);
+        return false;
+    }
+}

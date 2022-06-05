@@ -11,7 +11,7 @@ const now = () => {
 const handler = async (req, res, next) => {
     try {
         const { name, link } = req.body;   
-        if ( !name || !link ) {
+        if (!name || !link) {
           logger.error(`[POST] /shop, status: 400, msg: Not Params`);
           res.json({ 'status': 400, 'msg': 'Not Params' });
           return;

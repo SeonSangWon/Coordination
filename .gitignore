@@ -4,6 +4,9 @@
 # LOG
 serverLog/
 
+# IMAGE
+image/
+
 # DOCKER
 Dockerfile
 
