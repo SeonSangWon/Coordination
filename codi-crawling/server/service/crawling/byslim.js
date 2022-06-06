@@ -14,7 +14,7 @@ const getHtml = async (url) => {
 
 export const getOuter = async (url) => {
     try {
-        let imgList = [];
+        let result ,imgList = [];
         await getHtml(url).then(async (html) => {
             const $ = cheerio.load(html.data);
             const data = $('ul.prdList').children('li').each(async (idx, val) => {
@@ -22,7 +22,10 @@ export const getOuter = async (url) => {
                 imgList[idx] = 'https://'+img;
             });
         });
-        return imgList;
+        result = imgList.filter((element, idx) => {
+            return imgList.indexOf(element) === idx;
+        });
+        return result;
     } catch (err) {
         logger.error(`getOuter, ${url}`, err);
         return undefined;
