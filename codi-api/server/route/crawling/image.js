@@ -49,6 +49,7 @@ const handler = async (req, res, next) => {
 
     const result = await axios.get(`http://${CRAWLING_URL}/crawling/${shop.name}`, {
       params: {
+        category: shop.category,
         link: shop.link
       }
     });
@@ -61,7 +62,7 @@ const handler = async (req, res, next) => {
         const isDown = await getImageDownloader(info, dir);
         if (isDown) await setImageInfo(shop.name, imgName, shop.category);
       }
-    });
+    }); 
 
     logger.info(`[GET] /crawling/image, status: 200, msg: success`);
     res.json({ 'status': 200, 'msg': 'success' });

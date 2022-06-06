@@ -2,21 +2,19 @@
 
 import { app } from '../../index';
 import { logger } from '../../../logger';
-import { getOuter } from '../../service/crawling/byslim';
+import { getImage } from '../../service/crawling/byslim';
 
 const handler = async (req, res, next) => {
     try {
-        const link = req.query.link;
-        if (!link) {
+        const { category, link } = req.query;
+        if (!category || !link) {
             logger.error(`[GET] /crawling/byslim, status: 400, msg: Not Params`);
             res.json({ 'status': 400, 'msg': 'Not Params' });
             return;
         }
-        const result = await getOuter(link);
-
-        logger.info(`[GET] /crawling/image, status: 200, msg: good`);
+        const result = await getImage(link);
+        logger.info(`[GET] /crawling/image, status: 200, result: ${result.length}`);
         res.json({ 'status': 200, 'result': result });
-
     } catch (err) {
       logger.error(`[GET] /crawling/byslim, handler`, err);
       next(err);

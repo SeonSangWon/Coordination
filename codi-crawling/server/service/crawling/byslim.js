@@ -12,7 +12,7 @@ const getHtml = async (url) => {
       }
 };
 
-export const getOuter = async (url) => {
+export const getImage = async (url) => {
     try {
         let result ,imgList = [];
         await getHtml(url).then(async (html) => {
