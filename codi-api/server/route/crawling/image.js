@@ -53,6 +53,7 @@ const handler = async (req, res, next) => {
         link: shop.link
       }
     });
+
     result.data.result.forEach(async (info) => {
       let fileExist = false;
       const imgName = await getFileName(info);

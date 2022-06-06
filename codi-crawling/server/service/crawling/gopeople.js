@@ -18,7 +18,7 @@ export const getImage = async (url) => {
         await getHtml(url).then(async (html) => {
             const $ = cheerio.load(html.data);
             const data = $('ul.prdList').children('li').each(async (idx, val) => {
-                const img = $(val).find('div.box > div.thumbnail > div.prdImg > a > img').attr('src').replace('//', '');
+                const img = $(val).find('div.thumbnail > div.prdImg > a > img').attr('src').replace('//', '');
                 imgList[idx] = 'https://'+img;
             });
         });
